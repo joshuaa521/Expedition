@@ -21,9 +21,9 @@ screen = pygame.display.set_mode(size)
 
 title1 = "Welcome to Expedition!"
 title5 = "Click to start!"
-controls = "Press C for Controls Screen!"
+controls = "Hold C for Controls Screen!"
 restart = "Press space to restart!"
-
+controls2 = "Controls added later"
 
 name = "Collect coins as fast as you can!"
 message = "Collision not detected"
@@ -45,11 +45,13 @@ title1_display = large_font.render(title1, True, (255,255,255))
 title5_display = large_font.render(title5, True, (255,255,255))
 restart_display = large_font.render(restart, True, (255,255,255))
 controls_display = large_font.render(controls,True, (255,255,255))
+controls2_display = large_font.render(controls2, True, (255,255,255))
 
 
 win = False
 lose = False
 title = True
+control_screen = False
 # The loop will carry on until the user exits the game (e.g. clicks the close button).
 run = True
 end_time = time.time() + 20
@@ -114,14 +116,28 @@ while run:
 
 
  if title is True:
-     screen.fill((r, g, b))
-     screen.blit(title1_display, (75, 15))
-     screen.blit(title5_display, (150, 200))
-     screen.blit(controls_display, (100,100))
-     pygame.display.update()
+     if keys[pygame.K_c]:
+         screen.fill((r, g, b))
+         screen.blit(controls2_display, (125, 10))
+         screen.blit(title5_display, (150, 200))
+         pygame.display.update()
+     elif event.type == pygame.MOUSEBUTTONUP:
+         screen.fill((r, g, b))
+         pygame.display.update()
+     else:
+        screen.fill((r, g, b))
+        screen.blit(title1_display, (125, 10))
+        screen.blit(title5_display, (150, 200))
+        screen.blit(controls_display, (100,100))
+        pygame.display.update()
+
+
+
+
+#event.type == pygame.MOUSEBUTTONUP:
+
 
 
 # Once we have exited the main program loop we can stop the game engine:
 pygame.quit()
-
 
