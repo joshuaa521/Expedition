@@ -1,6 +1,7 @@
 import pygame
 import time
 from fox import Fox
+from bullet import Bullet
 import random
 
 
@@ -54,6 +55,8 @@ controls_display = large_font.render(controls,True, (255,255,255))
 controls2_display = large_font.render(controls2, True, (255,255,255))
 
 f = Fox(40, 60)
+s = Bullet(40,60)
+
 win = False
 lose = False
 title = True
@@ -80,6 +83,11 @@ while run:
      f.move_direction("up")
  if keys[pygame.K_s]:
      f.move_direction("down")
+
+ if keys[pygame.K_f]:
+     x,y = f.give_location()
+     s.shoot(x,y)
+
 
 
  if keys[pygame.K_SPACE]:

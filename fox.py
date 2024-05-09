@@ -32,5 +32,10 @@ class Fox:
        self.rect = pygame.Rect(self.x, self.y, self.image_size[0], self.image_size[1])
 
 
+   def give_location(self):
+        x = self.x
+        y = self.y
+        return x,y
+
 
 
