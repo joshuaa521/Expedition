@@ -37,5 +37,3 @@ class Fox:
         y = self.y
         return x,y
 
-
-

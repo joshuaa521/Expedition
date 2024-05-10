@@ -60,6 +60,7 @@ s = Bullet(40,60)
 win = False
 lose = False
 title = True
+shooting = True
 # The loop will carry on until the user exits the game (e.g. clicks the close button).
 run = True
 start_time = time.time()
@@ -132,6 +133,7 @@ while run:
    screen.fill((r, g, b))
    screen.blit(display_name, (0, 0))
    screen.blit(display_message, (0, 15))
+   screen.blit(s.image, s.rect)
    screen.blit(f.image, f.rect)
    screen.blit(score_display, (0,30))
 
@@ -190,7 +192,3 @@ while run:
 # Once we have exited the main program loop we can stop the game engine:
 pygame.quit()
 
-
-
-# Once we have exited the main program loop we can stop the game engine:
-pygame.quit()
