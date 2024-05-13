@@ -68,8 +68,8 @@ start_time = time.time()
 while run:
  current_time = time.time() - start_time
  current_time = round(current_time, 2)
-
-
+ x, y = f.give_location()
+ s.find_player(x, y)
 
  if current_time < 0:
      lose = True
@@ -85,9 +85,11 @@ while run:
  if keys[pygame.K_s]:
      f.move_direction("down")
 
- if keys[pygame.K_f]:
-     x,y = f.give_location()
-     s.shoot(x,y)
+
+
+
+
+
 
 
 
@@ -115,6 +117,7 @@ while run:
  for event in pygame.event.get():  # User did something
      if event.type == pygame.QUIT:  # If user clicked close
          run = False
+
 
 
      if event.type == pygame.MOUSEBUTTONUP:
@@ -191,4 +194,3 @@ while run:
 
 # Once we have exited the main program loop we can stop the game engine:
 pygame.quit()
-
