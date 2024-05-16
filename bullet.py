@@ -9,9 +9,13 @@ class Bullet:
         self.image = pygame.image.load("placeholder-sprite.png")
         self.image_size = self.image.get_size()
         self.rect = pygame.Rect(self.x, self.y, self.image_size[0], self.image_size[1])
-        self.delta = .5
+        self.delta = .3
 
-    def shoot(self):
+    def shoot(self,shoot_bullet):
+        shoot_bullet = True
+        return shoot_bullet
+
+    def shoot_move(self):
         # take x and y of player and fire bullet from that point
         self.x = self.x + self.delta
         self.rect = pygame.Rect(self.x, self.y, self.image_size[0], self.image_size[1])

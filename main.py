@@ -60,7 +60,8 @@ s = Bullet(40,60)
 win = False
 lose = False
 title = True
-shooting = True
+shoot_bullet = False
+
 # The loop will carry on until the user exits the game (e.g. clicks the close button).
 run = True
 start_time = time.time()
@@ -68,8 +69,15 @@ start_time = time.time()
 while run:
  current_time = time.time() - start_time
  current_time = round(current_time, 2)
+
+
+
  x, y = f.give_location()
- s.find_player(x, y)
+ if shoot_bullet == False:
+     s.find_player(x, y)
+
+ if shoot_bullet == True:
+     s.shoot_move()
 
  if current_time < 0:
      lose = True
@@ -84,7 +92,8 @@ while run:
      f.move_direction("up")
  if keys[pygame.K_s]:
      f.move_direction("down")
-
+ if keys[pygame.K_f]:
+     shoot_bullet = s.shoot(shoot_bullet)
 
 
 
@@ -119,7 +128,6 @@ while run:
          run = False
 
 
-
      if event.type == pygame.MOUSEBUTTONUP:
          if event.button == 1:
              if title is True:
@@ -131,6 +139,8 @@ while run:
 
 
 
+# if shoot_bullet == True:
+     #s.shoot_move()
 
  if win is False and lose is False and title is False:
    screen.fill((r, g, b))
