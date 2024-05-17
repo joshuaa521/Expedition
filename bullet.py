@@ -6,7 +6,7 @@ class Bullet:
     def __init__(self,x,y):
         self.x = x
         self.y = y
-        self.image = pygame.image.load("placeholder-sprite.png")
+        self.image = pygame.image.load("bullet_sprite.png")
         self.image_size = self.image.get_size()
         self.rect = pygame.Rect(self.x, self.y, self.image_size[0], self.image_size[1])
         self.delta = .3
@@ -24,3 +24,6 @@ class Bullet:
         self.x = x_player
         self.y = y_player
         self.rect = pygame.Rect(self.x, self.y, self.image_size[0], self.image_size[1])
+
+    def change_speed(self):
+        self.delta = .25

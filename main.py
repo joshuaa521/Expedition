@@ -2,6 +2,7 @@ import pygame
 import time
 from fox import Fox
 from bullet import Bullet
+from monster import Monster
 import random
 
 
@@ -56,6 +57,8 @@ controls2_display = large_font.render(controls2, True, (255,255,255))
 
 f = Fox(40, 60)
 s = Bullet(40,60)
+m = Monster(40,60)
+
 
 win = False
 lose = False
@@ -69,7 +72,6 @@ start_time = time.time()
 while run:
  current_time = time.time() - start_time
  current_time = round(current_time, 2)
-
 
 
  x, y = f.give_location()
@@ -94,6 +96,7 @@ while run:
      f.move_direction("down")
  if keys[pygame.K_f]:
      shoot_bullet = s.shoot(shoot_bullet)
+
 
 
 
@@ -146,6 +149,7 @@ while run:
    screen.fill((r, g, b))
    screen.blit(display_name, (0, 0))
    screen.blit(display_message, (0, 15))
+   screen.blit(m.image, m.rect)
    screen.blit(s.image, s.rect)
    screen.blit(f.image, f.rect)
    screen.blit(score_display, (0,30))
