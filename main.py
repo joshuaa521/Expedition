@@ -81,6 +81,10 @@ while run:
  if shoot_bullet == True:
      s.shoot_move()
 
+ x,y = s.give_location()
+ if x > 500:
+     shoot_bullet = False
+
  if current_time < 0:
      lose = True
 
@@ -96,13 +100,6 @@ while run:
      f.move_direction("down")
  if keys[pygame.K_f]:
      shoot_bullet = s.shoot(shoot_bullet)
-
-
-
-
-
-
-
 
 
  if keys[pygame.K_SPACE]:

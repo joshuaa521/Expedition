@@ -1,8 +1,6 @@
 import pygame
 
 
-
-
 class Fox:
 
 
@@ -12,7 +10,7 @@ class Fox:
        self.image = pygame.image.load("scientist-sprite.png")
        self.image_size = self.image.get_size()
        self.rect = pygame.Rect(self.x, self.y, self.image_size[0], self.image_size[1])
-       self.delta = .1
+       self.delta = .25
 
 
    def move_direction(self, direction):
@@ -36,4 +34,3 @@ class Fox:
         x = self.x
         y = self.y
         return x,y
-
