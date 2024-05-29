@@ -57,7 +57,7 @@ controls2_display = large_font.render(controls2, True, (255,255,255))
 
 f = Fox(40, 60)
 s = Bullet(40,60)
-m = Monster(40,60)
+m = Monster(400,60)
 
 
 win = False
@@ -82,11 +82,22 @@ while run:
      s.shoot_move()
 
  x,y = s.give_location()
+
  if x > 500:
      shoot_bullet = False
 
  if current_time < 0:
      lose = True
+
+
+ if m.rect.colliderect(s.rect):
+     message = "Collision detected"
+     display_message = my_font.render(message, True, (255, 255, 255))
+     score_display = my_font.render("Score: " + str(score), True, (255, 255, 255))
+ else:
+     message = "Collision not detected"
+     display_message = my_font.render(message, True, (255, 255, 255))
+
 
 
  keys = pygame.key.get_pressed()  # checking pressed keys
@@ -121,7 +132,6 @@ while run:
 
 
 
-
  # --- Main event loop
  for event in pygame.event.get():  # User did something
      if event.type == pygame.QUIT:  # If user clicked close
@@ -138,9 +148,6 @@ while run:
                  score_display = my_font.render("Score: " + str(score), True, (255, 255, 255))
 
 
-
-# if shoot_bullet == True:
-     #s.shoot_move()
 
  if win is False and lose is False and title is False:
    screen.fill((r, g, b))
@@ -176,15 +183,6 @@ while run:
      screen.blit(restart_display, (125,170))
      pygame.display.update()
 
-
- #if title is True:
-     #screen.fill((r, g, b))
-     #screen.blit(title1_display, (75, 15))
-     #screen.blit(title2_display, (13, 85))
-     #screen.blit(title3_display, (100, 120))
-     #screen.blit(title4_display, (100, 150))
-     #screen.blit(title5_display, (150, 200))
-     #pygame.display.update()
 
  if title is True:
      if keys[pygame.K_c]:

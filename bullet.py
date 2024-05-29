@@ -27,3 +27,8 @@ class Bullet:
 
     def change_speed(self):
         self.delta = .25
+
+    def give_location(self):
+        x = self.x
+        y = self.y
+        return x, y
