@@ -23,9 +23,9 @@ screen = pygame.display.set_mode(size)
 
 
 title1 = "Welcome to Expedition!"
-title2 = "Your goal is to earn 100 points before the timer reaches 0"
-title3 = "Each Coin collected is 10 points!"
-title4 = "If the timer reaches 0 you lose!"
+title2 = "Your goal is to defeat the monster!"
+title3 = "Use your gun to take it down!"
+title4 = "Each bullet deals 20 damage!"
 title5 = "Click to start!"
 restart = "Press space to restart!"
 controls2 = "Controls added later"
@@ -38,7 +38,6 @@ r = 93
 g = 93
 b = 93
 score = 0
-
 
 # render the text for later
 display_name = my_font.render(name, True, (255, 255, 255))
@@ -54,6 +53,7 @@ title5_display = large_font.render(title5, True, (255,255,255))
 restart_display = large_font.render(restart, True, (255,255,255))
 controls_display = large_font.render(controls,True, (255,255,255))
 controls2_display = large_font.render(controls2, True, (255,255,255))
+#health_display = large_font.render(monster_health, True, (255,255,255))
 
 f = Fox(40, 60)
 s = Bullet(40,60)
@@ -68,10 +68,16 @@ shoot_bullet = False
 # The loop will carry on until the user exits the game (e.g. clicks the close button).
 run = True
 start_time = time.time()
+monster_healthnumber = 600
 # -------- Main Program Loop -----------
 while run:
  current_time = time.time() - start_time
  current_time = round(current_time, 2)
+
+ healthx, healthy = m.give_location()
+
+ healthx = healthx + 10
+ healthy = healthy + 10
 
 
  x, y = f.give_location()
@@ -80,6 +86,7 @@ while run:
 
  if shoot_bullet == True:
      s.shoot_move()
+
 
  x,y = s.give_location()
 
@@ -94,6 +101,8 @@ while run:
      message = "Collision detected"
      display_message = my_font.render(message, True, (255, 255, 255))
      score_display = my_font.render("Score: " + str(score), True, (255, 255, 255))
+     monster_healthnumber = monster_healthnumber - 20
+     shoot_bullet = False
  else:
      message = "Collision not detected"
      display_message = my_font.render(message, True, (255, 255, 255))
@@ -158,6 +167,11 @@ while run:
    screen.blit(f.image, f.rect)
    screen.blit(score_display, (0,30))
 
+   monster_health = str(monster_healthnumber)
+   monster_health = str(monster_health)
+   health_display = large_font.render(monster_health, True, (255, 255, 255))
+
+   screen.blit(health_display, (healthx,healthy))
 
    format_currenttime = (str(current_time) + "s elapsed")
    format_currenttime = str(format_currenttime)
@@ -192,8 +206,8 @@ while run:
          pygame.display.update()
      else:
          screen.fill((r, g, b))
-         screen.blit(title1_display, (75, 15))
-         screen.blit(title2_display, (13, 85))
+         screen.blit(title1_display, (100, 15))
+         screen.blit(title2_display, (100, 85))
          screen.blit(title3_display, (100, 120))
          screen.blit(title4_display, (100, 150))
          screen.blit(title5_display, (150, 200))
