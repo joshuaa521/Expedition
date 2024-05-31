@@ -12,7 +12,7 @@ pygame.font.init()
 my_font = pygame.font.SysFont('Arial', 15)
 large_font = pygame.font.SysFont('Arial', 30)
 med_font = pygame.font.SysFont('Arial', 20)
-pygame.display.set_caption("Coin Collector!")
+pygame.display.set_caption("Expedition!")
 
 
 # set up variables for the display
@@ -69,6 +69,7 @@ shoot_bullet = False
 run = True
 start_time = time.time()
 monster_healthnumber = 600
+scientist_healthnumber = 200
 # -------- Main Program Loop -----------
 while run:
  current_time = time.time() - start_time
@@ -78,6 +79,10 @@ while run:
 
  healthx = healthx + 10
  healthy = healthy + 10
+
+ science_x, science_y = f.give_location()
+ science_x = science_x + 10
+ science_y = science_y + 10
 
 
  x, y = f.give_location()
@@ -110,6 +115,15 @@ while run:
 
 
  keys = pygame.key.get_pressed()  # checking pressed keys
+ if keys[pygame.K_UP]:
+     m.move_direction("up")
+ if keys[pygame.K_LEFT]:
+     m.move_direction("left")
+ if keys[pygame.K_RIGHT]:
+     m.move_direction("right")
+ if keys[pygame.K_DOWN]:
+     m.move_direction("down")
+
  if keys[pygame.K_d]:
      f.move_direction("right")
  if keys[pygame.K_a]:
@@ -120,6 +134,12 @@ while run:
      f.move_direction("down")
  if keys[pygame.K_f]:
      shoot_bullet = s.shoot(shoot_bullet)
+
+ if monster_healthnumber == 0:
+     win = True
+
+ if scientist_healthnumber == 0:
+     lose = True
 
 
  if keys[pygame.K_SPACE]:
@@ -137,7 +157,6 @@ while run:
          end_time = time.time() + 20
          current_time = time.time()
          score_display = my_font.render("Score: " + str(score), True, (255, 255, 255))
-
 
 
 
@@ -176,6 +195,9 @@ while run:
    format_currenttime = (str(current_time) + "s elapsed")
    format_currenttime = str(format_currenttime)
 
+   scientist_healthnumber = str(scientist_healthnumber)
+   sciencehealth_display = large_font.render(scientist_healthnumber, True, (255,255,255))
+   screen.blit(sciencehealth_display, (science_x, science_y))
 
    display_time = my_font.render(format_currenttime, True, (255, 255, 255))
    screen.blit(display_time, (0, 50))
