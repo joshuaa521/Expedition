@@ -25,11 +25,17 @@ screen = pygame.display.set_mode(size)
 title1 = "Welcome to Expedition!"
 title2 = "Your goal is to defeat the monster!"
 title3 = "Use your gun to take it down!"
-title4 = "Each bullet deals 20 damage!"
+title4 = "Hold C for Controls Screen!"
 title5 = "Click to start!"
 restart = "Press space to restart!"
-controls2 = "Controls added later"
+controls2 = "Expedition Controls"
 controls = "Hold C for Controls Screen!"
+
+controls3 = "Hold B while moving as monster for a speed boost"
+controls4 = "Tap F to shoot"
+controls5 = "WASD for scientist Movement"
+controls6 = "Arrow Keys for monster movement"
+
 name = "Defeat the Monster!"
 message = "Collision not detected"
 win_message = "Congratulations! You Win!"
@@ -53,6 +59,11 @@ title5_display = large_font.render(title5, True, (255,255,255))
 restart_display = large_font.render(restart, True, (255,255,255))
 controls_display = large_font.render(controls,True, (255,255,255))
 controls2_display = large_font.render(controls2, True, (255,255,255))
+controls3_display = large_font.render(controls3, True, (255,255,255))
+controls4_display = large_font.render(controls4, True, (255,255,255))
+controls5_display = large_font.render(controls5, True, (255,255,255))
+controls6_display = large_font.render(controls6, True, (255,255,255))
+
 #health_display = large_font.render(monster_health, True, (255,255,255))
 
 f = Fox(40, 60)
@@ -156,6 +167,13 @@ while run:
  if keys[pygame.K_SPACE]:
      if win is True:
          score = 0
+         monster_healthnumber = 600
+         scientist_healthnumber = 200
+
+         f = Fox(40, 60)
+         s = Bullet(40, 60)
+         m = Monster(400, 60)
+
          win = False
          end_time = time.time() + 20
          current_time = time.time()
@@ -164,6 +182,13 @@ while run:
 
      elif lose is True:
          score = 0
+         monster_healthnumber = 600
+         scientist_healthnumber = 200
+
+         f = Fox(40, 60)
+         s = Bullet(40, 60)
+         m = Monster(400, 60)
+
          lose = False
          end_time = time.time() + 20
          current_time = time.time()
@@ -234,7 +259,12 @@ while run:
  if title is True:
      if keys[pygame.K_c]:
          screen.fill((r, g, b))
-         screen.blit(controls2_display, (125, 10))
+         screen.blit(controls2_display, (125, 0))
+         screen.blit(controls3_display, (25, 50))
+         screen.blit(controls4_display, (125, 80))
+         screen.blit(controls5_display, (125, 110))
+         screen.blit(controls6_display, (125, 140))
+
          screen.blit(title5_display, (150, 200))
          pygame.display.update()
      else:
