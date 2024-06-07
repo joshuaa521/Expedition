@@ -30,7 +30,7 @@ title5 = "Click to start!"
 restart = "Press space to restart!"
 controls2 = "Controls added later"
 controls = "Hold C for Controls Screen!"
-name = "Collect coins as fast as you can!"
+name = "Defeat the Monster!"
 message = "Collision not detected"
 win_message = "Congratulations! You Win!"
 loss_message = "You lost! Try Again!"
@@ -78,11 +78,11 @@ while run:
  healthx, healthy = m.give_location()
 
  healthx = healthx + 10
- healthy = healthy + 10
+ healthy = healthy - 10
 
  science_x, science_y = f.give_location()
  science_x = science_x + 10
- science_y = science_y + 10
+ science_y = science_y - 10
 
 
  x, y = f.give_location()
@@ -115,14 +115,25 @@ while run:
 
 
  keys = pygame.key.get_pressed()  # checking pressed keys
- if keys[pygame.K_UP]:
-     m.move_direction("up")
- if keys[pygame.K_LEFT]:
-     m.move_direction("left")
- if keys[pygame.K_RIGHT]:
-     m.move_direction("right")
- if keys[pygame.K_DOWN]:
-     m.move_direction("down")
+ if keys[pygame.K_b]:
+     if keys[pygame.K_UP]:
+         m.speed_move("up")
+     if keys[pygame.K_LEFT]:
+         m.speed_move("left")
+     if keys[pygame.K_RIGHT]:
+         m.speed_move("right")
+     if keys[pygame.K_DOWN]:
+         m.speed_move("down")
+ else:
+     if keys[pygame.K_UP]:
+         m.move_direction("up")
+     if keys[pygame.K_LEFT]:
+         m.move_direction("left")
+     if keys[pygame.K_RIGHT]:
+         m.move_direction("right")
+     if keys[pygame.K_DOWN]:
+         m.move_direction("down")
+
 
  if keys[pygame.K_d]:
      f.move_direction("right")
