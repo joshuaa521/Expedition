@@ -5,7 +5,6 @@ from bullet import Bullet
 from monster import Monster
 import random
 
-
 # set up pygame modules
 pygame.init()
 pygame.font.init()
@@ -36,18 +35,19 @@ controls4 = "Tap F to shoot"
 controls5 = "WASD for scientist Movement"
 controls6 = "Arrow Keys for monster movement"
 
-name = "Defeat the Monster!"
-message = "Collision not detected"
+message = "Defeat the Monster!"
+message_2 = "Collision not detected"
 win_message = "Congratulations! You Win!"
 loss_message = "You lost! Try Again!"
+
 r = 93
 g = 93
 b = 93
 score = 0
 
 # render the text for later
-display_name = my_font.render(name, True, (255, 255, 255))
 display_message = my_font.render(message, True, (255, 255, 255))
+display_message_2 = my_font.render(message_2, True, (255, 255, 255))
 score_display = my_font.render("Score: " + str(score), True, (255, 255, 255))
 loss_display = large_font.render(loss_message, True, (255,255,255))
 win_display = large_font.render(win_message, True, (255,255,255))
@@ -112,16 +112,16 @@ while run:
  if current_time < 0:
      lose = True
 
-
- if m.rect.colliderect(s.rect):
-     message = "Collision detected"
-     display_message = my_font.render(message, True, (255, 255, 255))
+ if m.rect.colliderect(s.rect) and m.rect.colliderect(f.rect):
+     message_2 = "Collision detected"
+     display_message_2 = my_font.render(message_2, True, (255, 255, 255))
      score_display = my_font.render("Score: " + str(score), True, (255, 255, 255))
+     scientist_healthnumber = scientist_healthnumber - 50
+     m = Monster(400, 60)
+     shoot_bullet = False
+ elif m.rect.colliderect(s.rect):
      monster_healthnumber = monster_healthnumber - 20
      shoot_bullet = False
- else:
-     message = "Collision not detected"
-     display_message = my_font.render(message, True, (255, 255, 255))
 
 
 
@@ -215,7 +215,7 @@ while run:
 
  if win is False and lose is False and title is False:
    screen.fill((r, g, b))
-   screen.blit(display_name, (0, 0))
+   screen.blit(display_message_2, (0, 0))
    screen.blit(display_message, (0, 15))
    screen.blit(m.image, m.rect)
    screen.blit(s.image, s.rect)
