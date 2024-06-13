@@ -9,7 +9,7 @@ class Monster:
         self.image = pygame.image.load("placeholder-sprite.png")
         self.image_size = self.image.get_size()
         self.rect = pygame.Rect(self.x, self.y, self.image_size[0], self.image_size[1])
-        self.delta = .25
+        self.delta = .125
 
     def give_location(self):
         x = self.x
